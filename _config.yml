@@ -86,7 +86,7 @@ scheduleData:
     - name: Monday
       events:
         - name: Lecture
-          start: 12:30 AM
+          start: 12:30 PM
           end: 2:00 PM
           location: LT2 Level 4
         - name: Lab
@@ -96,7 +96,7 @@ scheduleData:
     - name: Tuesday
       events:
         - name: Lecture
-          start: 12:30 AM
+          start: 12:30 PM
           end: 2:00 PM
           location: Electronics Lab
         - name: Nadir Appointment Slots
