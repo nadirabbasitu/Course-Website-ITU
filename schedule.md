@@ -43,7 +43,7 @@ nav_exclude: false
   </ul>
 </div>
 
-<a href="" class="btn btn-outline h6" id="ubs_appointment_url" >Book UBS Appointment</a>
+<a href="" class="btn btn-outline h6" id="ubs_appointment_url" >Book Instructor Appointment</a>
 <a href="" class="btn btn-outline h6" id="ta_appointment_url">Book TA Appointment</a>
 
 <div id="loader"></div>
