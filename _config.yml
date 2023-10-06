@@ -132,8 +132,8 @@ search_enabled: true
 heading_anchors: true
 permalink: pretty
 aux_links:
-  Usama Bin Shakeel:
-    - 'https://ubs.dev'
+  Nadir Abbas:
+    - ''
 
 defaults:
   - scope:
