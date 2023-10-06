@@ -101,7 +101,7 @@ scheduleData:
           location: Electronics Lab
         - name: Nadir Appointment Slots
           start: 3:00 PM
-          end: 4:00 PM
+          end: 5:00 PM
           location: DCL (HPC) Lab Level 4
     - name: Wednesday
       events:
