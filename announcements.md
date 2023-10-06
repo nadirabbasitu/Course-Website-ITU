@@ -1,15 +1,23 @@
 ---
 layout: page
 title: Announcements
-nav_exclude: true
+nav_order: 1
 description: A feed containing all of the class announcements.
+nav_exclude: false
+
 ---
+
+<link rel="stylesheet" href="/assets/css/style.css">
 
 # Announcements
 
-Announcements are stored in the `_announcements` directory and rendered according to the layout file, `_layouts/announcement.html`.
+<div id="announcement_container">
+</div>
+<div class="loader" id="loader"></div>
+<!-- <script type="module" src="/assets/js/announcements.js">
+</script> -->
 
-{% assign announcements = site.announcements | reverse %}
-{% for announcement in announcements %}
-{{ announcement }}
-{% endfor %}
+<script src="/assets/js/library.js"></script>
+<script>
+    library.announcements("{{site.courseDetails_sheet_url}}", "{{site.announcemet_and_calender_sheet_tab}}",{{site.site_mode_isOffline}}, "{{site.announcement_and_calender_csv}}");
+</script>

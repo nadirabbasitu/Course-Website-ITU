@@ -1,45 +1,67 @@
 .staffer {
   display: flex;
-  margin: $sp-4 0;
+  margin: $sp-4;
 
   .staffer-image {
     border-radius: 50%;
+    width: 100px;
     height: 100px;
     margin-right: $sp-4;
-    width: auto;
   }
 
-  .anchor-heading {
-    right: auto;
-    left: -$sp-5;
-  }
-
-  .staffer-name,
-  .staffer-meta,
-  p {
-    margin: 0 0 $sp-1 0;
-  }
-
+  p,
   .staffer-name {
-    @extend .d-inline-block;
+    margin: $sp-1  !important;
   }
 
   .staffer-pronouns {
-    @extend .label, .text-grey-dk-300, .bg-grey-lt-000;
-
-    user-select: none;
+    @extend .label, .text-grey-dk-100, .bg-grey-lt-200;
   }
 
   .staffer-meta {
-    dt, dd, dd + dt {
-      margin-top: 0;
+    @extend .text-grey-dk-000;
+  }
+}
+
+.no-responsive {}
+
+.fame-responsive {
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .fame-badge-image {
+    width: 100px;
+    height: 100px;
+    @media (max-width: 480px) {
+      width: 80px;
+      height: 80px;
     }
   }
 
-  @include mq(sm) {
-    .staffer-meta {
-      display: grid;
-      grid-template-columns: auto 1fr;
+  .fame-detailContainer {
+    width: 250px;
+    @media (max-width: 480px) {
+      width: fit-content;
+      align-self: center;
+    }
+  }
+
+  .fame-std-container {
+    display: flex;
+    @media (max-width: 480px) {
+      justify-content: center;
+      border-bottom: 1px solid #ede7e7;
+      padding: 0px 0px 16px 0px;
+    }
+  }
+
+  .fame-position-image {
+    @media (max-width: 480px) {
+      display: block;
+      text-align: center;
+      min-width: 100%;
     }
   }
 }

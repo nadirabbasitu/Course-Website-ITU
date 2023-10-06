@@ -4,7 +4,7 @@
 # which you are expected to set up once and rarely edit after that. If you find
 # yourself editing these this file very often, consider using Jekyll's data files
 # feature for the data you need to update frequently.
-#
+# 
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'jekyll serve'. If you change this file, please restart the server process.
 
@@ -13,43 +13,149 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Just the Class
-tagline: A Jekyll template for course websites
-description: A modern, highly customizable, responsive Jekyll template for course websites
-author: Kevin Lin
-baseurl: '/just-the-class' # the subpath of your site, e.g. /blog
-url: 'https://kevinl.info' # the base hostname & protocol for your site, e.g. http://example.com
-exclude: ["Gemfile", "Gemfile.lock", "LICENSE"]
 
+# ***********
+# if the below is false then the Student Progress and Attendance Tabs will be disapper
+
+# Website Configuration
+
+site_mode_isOffline: &my_anchor false #set true if site is no more getting data from google sheets and also download sheet individually into csv format and place into csv_files files  names should be same as now these are
+
+
+# Links
+
+# chagning for progress sheet
+courseDetails_sheet_url : 'https://script.google.com/macros/s/AKfycbysCGTgdgw888gSB1O7S9ZWb_x0AzoLlKyUSUD58IsyW9_F5b-45G_YwbMfJDtCVwUG/exec'
+url: 'https://fall2023-se101a.ubs.dev' # the base hostname & protocol for your site, e.g. http://example.com
+title: Programming Fundamentals - SE-A
+tagline: Fall 2023 - SE101 - PF
+description: This introductory course is aimed at the students with little or no programming experience, and it introduces students to the basics of computers and programming. On one hand they will learn basic topics of computing and usage, while on the other hand they will be exposed to programming language(s). By the end of course the student should be capable of programming in at least one programming language.
+author: Usama Bin Shakeel
+
+# Static Data
+# **********************************
+# description of Details=>Parts
+parts_description: All programming courses will have two parts (Theory & Lab), these both are graded and evaluated separately, therefore performance in both is required. Breakdown of the percentage for each part of the course is as following
+# description of Details=>Outlines
+outlines_description: Both course outlines are tentative, and can be modified based on the students learning capabilities and response based on progress.
+
+# google sheets tab names
+courseDetails: CourseDetails
+announcemet_and_calender_sheet_tab: website_weekly_data
+attendance_and_std_progress_sheet_tab: website_attendance
+fame_weekly_top_sheet_tab: website_top_std_of_week
+fame_overall_top_sheet_tab: website_overall_top_std
+staff_sheet_tab: website_staff
+std_progress_sheet: StudentProgressChart
+std_details_sheet: Student Details
+
+# scv file names
+# these names should be same as in csv files filder 
+# DON'T INCLUDE .CSV EXTENSION
+staff_csv: staff
+general_data_csv: general_data
+overall_top_std_csv: website_overall_top_std
+top_std_of_week_csv: website_top_std_of_week
+announcement_and_calender_csv: website_weekly_data
+
+
+# This will show on Schedule
+scheduleData:
+  timeline:
+    - '8:00 AM'
+    - '8:30 AM'
+    - '9:00 AM'
+    - '9:30 AM'
+    - '10:00 AM'
+    - '10:30 AM'
+    - '11:00 AM'
+    - '11:30 AM'
+    - '12:00 PM'
+    - '12:30 PM'
+    - '1:00 PM'
+    - '1:30 PM'
+    - '2:00 PM'
+    - '2:30 PM'
+    - '3:00 PM'
+    - '3:30 PM'
+    - '4:00 PM'
+    - '4:30 PM'
+    - '5:00 PM'
+    - '5:30 PM'
+  schedule:
+    - name: Monday
+      events:
+        - name: Lecture
+          start: 9:30 AM
+          end: 11:00 AM
+          location: Auditorium
+        - name: Lab
+          start: 11:00 AM
+          end: 02:00 PM
+          location: Computer Lab Level 6
+    - name: Tuesday
+      events:
+        - name: Lecture
+          start: 9:30 AM
+          end: 11:00 AM
+          location: Auditorium
+        - name: TA Appointment Slots
+          start: 11:00 AM
+          end: 12:30 PM
+          location: Embedded Lab
+        - name: UBS Appointment Slots
+          start: 12:30 PM
+          end: 2:00 PM
+          location: Embedded Lab
+
+    - name: Wednesday
+      events:
+    - name: Thursday
+      events:
+    - name: Friday
+      events:
+
+
+
+
+# Generic Configurations
+
+baseurl: '/' # the subpath of your site, e.g. /blog
+
+exclude: ["Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
+logo: "/assets/images/ubs-itu.png"
+exclude: [vendor]
 # Theme settings
-remote_theme: just-the-docs/just-the-docs@v0.6.2
+remote_theme: pmarsceill/just-the-docs@v0.3.3
 color_scheme: light
 search_enabled: true
 heading_anchors: true
 permalink: pretty
 aux_links:
-  Kevin Lin:
-    - 'https://kevinl.info'
-  Just the Class on GitHub:
-    - 'https://github.com/kevinlin1/just-the-class'
-footer_content:
+  Usama Bin Shakeel:
+    - 'https://ubs.dev'
 
-# Collections for website data
-collections:
-  staffers:
-  modules:
-  schedules:
-  announcements:
-# Default layouts for each collection type
 defaults:
+  - scope:
+      path: ''
+    values:
+      layout: "page"
+      nav_order: 5
+      nav_exclude: *my_anchor
+      author: "UBS"
+
   - scope:
       path: ''
       type: staffers
     values:
       layout: staffer
-      height: 300
-      subpath: '/assets/images/'
-      width: 300
+      subpath: '/assets/images/staff/'
+  - scope:
+      path: ''
+      type: students
+    values:
+      layout: staffer
+      subpath: '/assets/images/students/'
   - scope:
       path: ''
       type: modules
@@ -57,14 +163,18 @@ defaults:
       layout: module
   - scope:
       path: ''
-      type: schedules
-    values:
-      layout: schedule
-  - scope:
-      path: ''
       type: announcements
     values:
       layout: announcement
+
+footer_content:
+# Collections for website data
+collections:
+  staffers:
+  modules:
+  announcements:
+  students:
+# Default layouts for each collection type
 
 compress_html:
   clippings: all
@@ -73,3 +183,9 @@ compress_html:
   startings: []
   blanklines: false
   profile: false
+
+plugins:
+  - jekyll-seo-tag
+
+theme: jekyll-theme-cayman
+

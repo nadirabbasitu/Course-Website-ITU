@@ -49,7 +49,7 @@
     border-left: $border $border-color;
     flex: 1 0 0;
     margin: 0;
-    min-width: 120px;
+    min-width: 130px;
 
     &:first-of-type {
       border-left: 0;
@@ -93,15 +93,32 @@
     }
 
     &.lecture {
-      background-color: $grey-dk-000;
+      background-color: $blue-000;
     }
 
     &.section {
       background-color: $purple-000;
     }
 
-    &.office-hours {
-      background-color: $blue-000;
+    &.ubs-appointment-slots {
+      background-color: $purple-000;
+
+    }
+    &.teacher-appointment-slots {
+      background-color: $purple-000;
+    }
+
+    &.ta-appointment-slots {
+      background-color: $red-000;
+
+    }
+
+    //&.lab-missing-evaluations {
+    //  background-color: $orange-000;
+    //
+    //}
+    &.lab {
+      background-color: $green-000;
     }
   }
 }
