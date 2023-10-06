@@ -103,6 +103,10 @@ scheduleData:
           start: 03:00 PM
           end: 04:00 PM
           location: HPC Lab
+        - name: Nadir Appointment Slots
+          start: 03:00 PM
+          end: 04:00 PM
+          location: HPC Lab
     - name: Wednesday
       events:
         - name: TA Appointment Slots
