@@ -26,11 +26,11 @@ site_mode_isOffline: &my_anchor false #set true if site is no more getting data 
 
 # chagning for progress sheet
 courseDetails_sheet_url : 'https://script.google.com/macros/s/AKfycbysCGTgdgw888gSB1O7S9ZWb_x0AzoLlKyUSUD58IsyW9_F5b-45G_YwbMfJDtCVwUG/exec'
-url: 'https://fall2023-se101a.ubs.dev' # the base hostname & protocol for your site, e.g. http://example.com
-title: Programming Fundamentals - SE-A
-tagline: Fall 2023 - SE101 - PF
+url: 'https://nadirabbasitu.github.io/fall2023-ce100/' # the base hostname & protocol for your site, e.g. http://example.com
+title: Computing Fundamentals and Programming - CE
+tagline: Fall 2023 - CE100 - CFP
 description: This introductory course is aimed at the students with little or no programming experience, and it introduces students to the basics of computers and programming. On one hand they will learn basic topics of computing and usage, while on the other hand they will be exposed to programming language(s). By the end of course the student should be capable of programming in at least one programming language.
-author: Usama Bin Shakeel
+author: Nadir Abbas
 
 # Static Data
 # **********************************
