@@ -103,9 +103,12 @@ scheduleData:
           start: 3:00 PM
           end: 4:00 PM
           location: DCL (HPC) Lab Level 4
-
     - name: Wednesday
       events:
+        - name: TA Appointment Slots
+          start: 10:00 AM
+          end: 5:00 PM
+          location: DCL (HPC) Lab Level 4
     - name: Thursday
       events:
     - name: Friday
