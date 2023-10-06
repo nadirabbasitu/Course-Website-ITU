@@ -86,27 +86,23 @@ scheduleData:
     - name: Monday
       events:
         - name: Lecture
-          start: 9:30 AM
-          end: 11:00 AM
-          location: Auditorium
+          start: 12:30 AM
+          end: 2:00 PM
+          location: LT2 Level 4
         - name: Lab
-          start: 11:00 AM
-          end: 02:00 PM
-          location: Computer Lab Level 6
+          start: 2:00 PM
+          end: 5:00 PM
+          location: DCL (HPC) Lab Level 4
     - name: Tuesday
       events:
         - name: Lecture
-          start: 9:30 AM
-          end: 11:00 AM
-          location: Auditorium
-        - name: TA Appointment Slots
-          start: 11:00 AM
-          end: 12:30 PM
-          location: Embedded Lab
-        - name: UBS Appointment Slots
-          start: 12:30 PM
+          start: 12:30 AM
           end: 2:00 PM
-          location: Embedded Lab
+          location: Electronics Lab
+        - name: Nadir Appointment Slots
+          start: 3:00 PM
+          end: 4:00 PM
+          location: DCL (HPC) Lab Level 4
 
     - name: Wednesday
       events:
