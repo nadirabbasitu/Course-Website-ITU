@@ -5,7 +5,7 @@ nav_order: 3
 description: >-
     Key and course policy
 ---
-
+{% assign imagePrefix = '/fall2023-ce100/' %}
 # Key and Course Policy 
 {:.no_toc}
 
@@ -19,13 +19,13 @@ description: >-
 
 ## Key:
 
-![image](/assets/images/policy/key.png)
+![image]({{ imagePrefix }}assets/images/policy/key.png)
 
 
 ## Attendance: 
 
 <p align='center'>
-  <img src='/assets/images/policy/attendance.png' />
+  <img src='{{ imagePrefix }}assets/images/policy/attendance.png' />
 </p>
 [//]: # (![image]&#40;{{picURL}}&#41;)
 
@@ -37,7 +37,7 @@ description: >-
 ## Attentiveness:
 
 <p align='center'>
-  <img src='/assets/images/policy/attentiveness.png' />
+  <img src='{{ imagePrefix }}assets/images/policy/attentiveness.png' />
 </p>
 
 * You must stay attentive during the lecture, especially when instructor is delivering the concept. Distraction caused to instructor can result in **deduction of one absolute mark** . Possible distraction to instructor is either you are sleeping during the lecture or talking with class fellows.
@@ -47,7 +47,7 @@ description: >-
 ## Time Management:
 
 <p align='center'>
-  <img src='/assets/images/policy/time.png' />
+  <img src='{{ imagePrefix }}assets/images/policy/time.png' />
 </p>
 * Semester System is different from yearly system, here you have to grasp during the lectures, if you delay things till the end of semester, you will possibly be in trouble.
 * Since you are studying multiple courses during the semester, therefore managing other courses is your own responsibility.  
@@ -60,7 +60,7 @@ description: >-
 ## We Attitude:
 
 <p align='center'>
-  <img src='/assets/images/policy/we.png' />
+  <img src='{{ imagePrefix }}assets/images/policy/we.png' />
 </p>
 
 * We are not in race with each other, therefore helping fellow members will not only help them in learning, but it will enhance your concepts and take you further. Therefore leave ‘ME” attitude of keeping things to yourself and **adopt “WE” attitude** .
@@ -69,7 +69,7 @@ description: >-
 ## Avoid Plagiarism:
 
 <p align='center'>
-  <img src='/assets/images/policy/plagiarism.png' />
+  <img src='{{ imagePrefix }}assets/images/policy/plagiarism.png' />
 </p>
 
 * Plagiarism is presenting work as your submission **when it was not actually produced by you** . This includes copying fellows work, getting work done by seniors, family members or through outsourcing. In all above scenarios we will trace and penalise.
@@ -85,7 +85,7 @@ description: >-
 ## Correlation in Components:
 
 <p align='center'>
-  <img src='/assets/images/policy/correlation.png' />
+  <img src='{{ imagePrefix }}assets/images/policy/correlation.png' />
 </p>
 
 * It has been observed that there is a correlation among results, as in if you are performing well in **submission based tasks (Assignments, projects & lab tasks)** , so you should be able to earn similar marks with some small deviation in **evaluations (quizzes & exams)** . In case if the submission based marks are more than reasonable in comparison, your submission based marks will be replaced by evaluation based marks.
@@ -93,7 +93,7 @@ description: >-
 ## Crystal Clear Concepts:
 
 <p align='center'>
-  <img src='/assets/images/policy/crystal.png' />
+  <img src='{{ imagePrefix }}assets/images/policy/crystal.png' />
 </p>
 
 * In semester system every lecture / topic is connected to next topic, similarly every course is connected to next course. If you don’t keep your concepts clear, you might not only suffer in the respective course but that deficiency might carry on for the complete chain of courses.

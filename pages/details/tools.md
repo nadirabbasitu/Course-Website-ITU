@@ -5,7 +5,7 @@ nav_order: 4
 description: >-
     Tools
 ---
-
+{% assign imagePrefix = '/fall2023-ce100/' %}
 # Tools
 {:.no_toc}
 
@@ -13,7 +13,7 @@ description: >-
 <link rel="stylesheet" href="/assets/css/style.css">
 
 <p align='center' style="background-color:black;">
-  <img src='/assets/images/policy/tools.png' />
+  <img src='{{ imagePrefix }}assets/images/policy/tools.png' />
 </p>
 
 

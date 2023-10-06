@@ -15,10 +15,10 @@ description: >-
 
 ## Theory
 
-![image](/assets/images/course/theory-breakdown.png)
+![image](/fall2023-ce100/assets/images/course/theory-breakdown.png)
 
 
 ## Lab
 
-![image](/assets/images/course/lab-breakdown.png)
+![image](/fall2023-ce100/assets/images/course/lab-breakdown.png)
 
