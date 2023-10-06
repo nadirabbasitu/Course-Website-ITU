@@ -92,7 +92,7 @@ scheduleData:
         - name: Lab
           start: 02:00 PM
           end: 05:00 PM
-          location: Distributed Computing Lab (HPC)
+          location: HPC Lab
     - name: Tuesday
       events:
         - name: Lecture
@@ -102,14 +102,13 @@ scheduleData:
         - name: Nadir Appointment Slots
           start: 03:00 PM
           end: 04:00 PM
-          location: Distributed Computing Lab (HPC)
-
+          location: HPC Lab
     - name: Wednesday
       events:
         - name: TA Appointment Slots
           start: 10:00 AM
           end: 05:00 PM
-          location: Distributed Computing Lab (HPC)
+          location: HPC Lab
     - name: Thursday
       events:
     - name: Friday
