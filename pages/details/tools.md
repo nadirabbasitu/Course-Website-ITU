@@ -10,7 +10,7 @@ description: >-
 {:.no_toc}
 
 ---
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="{{ imagePrefix }}assets/css/style.css">
 
 <p align='center' style="background-color:black;">
   <img src='{{ imagePrefix }}assets/images/policy/tools.png' />
