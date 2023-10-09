@@ -4,7 +4,7 @@ title: Page of Fame
 nav_exclude: false
 description: A listing of all students who have performed best during the week
 ---
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="fall2023-ce100/assets/css/style.css">
 
 # Students
 
