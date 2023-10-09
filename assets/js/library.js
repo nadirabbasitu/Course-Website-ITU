@@ -288,7 +288,7 @@ var library = (function () {
         fameDiv.classList.add(responsiveClass);
         const divContainer = `${container === "top_std_of_week" ?
             `
-                <img class="staffer-image" src="/assets/images/students/${item.image ? item.image : "placeholder.jpg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image">
+                <img class="staffer-image" src="../assets/images/students/${item.image ? item.image : "placeholder.jpg"}" onerror="this.src='../assets/images/students/placeholder.jpg';" alt="user-image">
                     <div>
                         <h3 class="staffer-name">
                             ${item.student_name}
@@ -299,7 +299,7 @@ var library = (function () {
             `
             :
             `${item.student_name !== "" ? `<div class="fame-std-container">
-                <img class="staffer-image" style="width: 100px" src="/assets/images/students/${item.image ? item.image : "placeholder.jpg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image">
+                <img class="staffer-image" style="width: 100px" src="../assets/images/students/${item.image ? item.image : "placeholder.jpg"}" onerror="this.src='../assets/images/students/placeholder.jpg';" alt="user-image">
                 <div class="fame-detailContainer">
                     <h3 class="staffer-name">
                         ${item.student_name}
@@ -308,7 +308,7 @@ var library = (function () {
                     <p>${item.position ? item.position : ""}</p>
                 </div>
                 </div>
-                ${item.position !== "" ? `<div class="fame-position-image"><img class="staffer-image fame-badge-image" src="/assets/images/positions/${item.position && item.position + ".jpeg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image"></div>` : ""}` : ""}`
+                ${item.position !== "" ? `<div class="fame-position-image"><img class="staffer-image fame-badge-image" src="../assets/images/positions/${item.position && item.position + ".jpeg"}" onerror="this.src='../assets/images/students/placeholder.jpg';" alt="user-image"></div>` : ""}` : ""}`
             }`
         fameDiv.innerHTML = divContainer;
         parentDiv.appendChild(fameDiv);
@@ -321,7 +321,7 @@ var library = (function () {
 
         const divContainer =
             `
-                <img class="staffer-image" src="../assets/images/staff/${item.Image ? item.Image : "placeholder.jpg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image">
+                <img class="staffer-image" src="../assets/images/staff/${item.Image ? item.Image : "placeholder.jpg"}" onerror="this.src='../assets/images/students/placeholder.jpg';" alt="user-image">
                 <div>
                     <h3 class="staffer-name">
                         ${item.Name}
