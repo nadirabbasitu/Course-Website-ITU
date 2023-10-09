@@ -6,7 +6,7 @@ seo:
   type: Course
   
 ---
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="fall2023-ce100/assets/css/style.css">
 <script>
   document.title = "{{ site.title }}"
 </script>
@@ -30,7 +30,7 @@ seo:
 
 <div id="loader"></div>
 
-<script src="../assets/js/library.js"></script>
+<script src="fall2023-ce100/assets/js/library.js"></script>
 <script>
     library.staticData("{{site.courseDetails_sheet_url}}", "{{site.courseDetails}}","general_site_details", "indexView" ,{{site.site_mode_isOffline}}, "{{site.general_data_csv}}");
 </script>
