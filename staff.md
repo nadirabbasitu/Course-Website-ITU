@@ -4,7 +4,7 @@ title: Staff
 description: A listing of all the course staff members.
 nav_exclude: false
 ---
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css">
 
 # Staff 
 
@@ -20,7 +20,7 @@ nav_exclude: false
 <!-- <script type="module" src="/assets/js/staff.js"> 
 </script>  -->
 
-<script src="/assets/js/library.js"></script>
+<script src="../assets/js/library.js"></script>
 <script>
     library.staff("{{site.courseDetails_sheet_url}}", "{{site.courseDetails}}","staff",{{site.site_mode_isOffline}},"{{site.staff_csv}}");
 </script>
