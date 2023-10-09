@@ -2,7 +2,7 @@
 title: "Student Progress"
 description: Listing of course modules and topics.
 ---
-<link rel="stylesheet" href="/assets/css/StudentProgressReport.css">
+<link rel="stylesheet" href="../assets/css/StudentProgressReport.css">
 
 # Get Student Progress Chart
 <div class="mt-4"> 
@@ -22,7 +22,7 @@ description: Listing of course modules and topics.
 
 </script> -->
 
-<script src="/assets/js/library.js"></script>
+<script src="../assets/js/library.js"></script>
 <script>
     library.stdProgressReport("{{site.courseDetails_sheet_url}}", "{{site.std_progress_sheet}}",{{site.site_mode_isOffline}});
 </script>
