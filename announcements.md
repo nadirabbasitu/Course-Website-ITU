@@ -7,7 +7,7 @@ nav_exclude: false
 
 ---
 
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="fall2023-ce100/assets/css/style.css">
 
 # Announcements
 
