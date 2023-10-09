@@ -17,7 +17,7 @@ nav_exclude: false
 <!-- <script type="module" src="/assets/js/announcements.js">
 </script> -->
 
-<script src="fall2023-ce100/assets/js/library.js"></script>
+<script src="../assets/js/library.js"></script>
 <script>
     library.announcements("{{site.courseDetails_sheet_url}}", "{{site.announcemet_and_calender_sheet_tab}}",{{site.site_mode_isOffline}}, "{{site.announcement_and_calender_csv}}");
 </script>
