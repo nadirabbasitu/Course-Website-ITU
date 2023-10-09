@@ -25,7 +25,7 @@ description: >-
 
 <div id="loader"></div>
 
-<script src="/assets/js/library.js"></script>
+<script src="../assets/js/library.js"></script>
 <script>
     library.staticData("{{site.courseDetails_sheet_url}}", "{{site.courseDetails}}","general_site_details", "tools" ,{{site.site_mode_isOffline}}, "{{site.general_data_csv}}");
 </script>
