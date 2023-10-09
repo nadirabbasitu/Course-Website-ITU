@@ -321,7 +321,7 @@ var library = (function () {
 
         const divContainer =
             `
-                <img class="staffer-image" src="/assets/images/staff/${item.Image ? item.Image : "placeholder.jpg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image">
+                <img class="staffer-image" src="../assets/images/staff/${item.Image ? item.Image : "placeholder.jpg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image">
                 <div>
                     <h3 class="staffer-name">
                         ${item.Name}
