@@ -3,7 +3,7 @@ title: "Student Group"
 description: Listing of course modules and topics.
 ---
 <!-- <link rel="stylesheet" href="/assets/css/StudentProgressReport.css"> -->
-<link rel="stylesheet" href="/assets/css/attendance.css">
+<link rel="stylesheet" href="../assets/css/attendance.css">
 
 # Get Your Group Members
 <div class="mt-4"> 
@@ -31,7 +31,7 @@ description: Listing of course modules and topics.
 
 </script> -->
 
-<script src="/assets/js/library.js"></script>
+<script src="../assets/js/library.js"></script>
 <script>
     library.stdStudentGroup("{{site.courseDetails_sheet_url}}", "{{site.std_details_sheet}}",{{site.site_mode_isOffline}});
 </script>
