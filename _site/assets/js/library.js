@@ -503,7 +503,7 @@ var library = (function () {
                             errorMsg.innerText = "";
                             mapThroughData(result)
                         } else {
-                            errorMsg.innerText = "Result Not Found Please Enter Correct Roll No BSXXYYZZZ where XX is your department, YY your batch and ZZZ is your roll number eg. BSSE23000."
+                            errorMsg.innerText = "Result Not Found Please Enter Correct Roll No BSXXYYZZZ where XX is your department, YY your batch and ZZZ is your roll number eg. BSCE23000."
                         }
                     })
                 }
