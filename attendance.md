@@ -4,7 +4,7 @@ title: Attendance
 description: Attendance Details
 nav_order: 4
 ---
-<link rel="stylesheet" href="/assets/css/attendance.css">
+<link rel="stylesheet" href="../assets/css/attendance.css">
 
 # {{page.title}}
 
@@ -36,7 +36,7 @@ nav_order: 4
 <div id="loader"></div>
 
 
-<script src="/assets/js/library.js"></script>
+<script src="../assets/js/library.js"></script>
 <script>
     library.attendance("{{site.courseDetails_sheet_url}}", "{{site.attendance_and_std_progress_sheet_tab}}",{{site.site_mode_isOffline}});
 </script>
