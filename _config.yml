@@ -25,7 +25,7 @@ site_mode_isOffline: &my_anchor false #set true if site is no more getting data 
 # Links
 
 # chagning for progress sheet
-courseDetails_sheet_url : 'https://script.google.com/macros/s/AKfycbysCGTgdgw888gSB1O7S9ZWb_x0AzoLlKyUSUD58IsyW9_F5b-45G_YwbMfJDtCVwUG/exec'
+courseDetails_sheet_url : 'https://script.google.com/macros/s/AKfycbwf6DOzPqNdLRRrFOBa2D57xnIEAERC3ymqtDXyImz-QI0sYPrwdaLiRyyh-KWuD6cOeA/exec'
 url: 'https://nadirabbasitu.github.io' # the base hostname & protocol for your site, e.g. http://example.com
 title: Computing Fundamentals and Programming - CE
 tagline: Fall 2023 - CE100 - CFP
