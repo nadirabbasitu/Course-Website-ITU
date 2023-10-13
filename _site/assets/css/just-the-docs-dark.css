@@ -162,23 +162,23 @@ hr { height: 1px; padding: 0; margin: 2rem 0; background-color: #44434d; border:
 @media (min-width: 10rem) { .site-nav { display: block; padding-top: 3rem; padding-bottom: 1rem; overflow-y: auto; flex: 1 1 auto; } }
 
 .site-nav {
-  display: none; /* Initially hide the navigation */
-  padding-top: 3rem;
-  padding-bottom: 1rem;
-  overflow-y: auto;
-  flex: 1 1 auto;
+    display: none; /* Initially hide the navigation */
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    overflow-y: auto;
+    flex: 1 1 auto;
 }
 
 @media (max-width: 800px) and (max-height: 656px) {
-  .site-nav {
-      display: none; /* Hide the navigation below 800x656 */
-  }
+    .site-nav {
+        display: none; /* Hide the navigation below 800x656 */
+    }
 }
 
 @media (min-width: 10rem) {
-  .site-nav.active {
-      display: block; /* Show the navigation */
-  }
+    .site-nav.active {
+        display: block; /* Show the navigation */
+    }
 }
 
 .site-header { display: flex; min-height: 60px; align-items: center; }
