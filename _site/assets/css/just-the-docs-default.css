@@ -157,8 +157,6 @@ hr { height: 1px; padding: 0; margin: 2rem 0; background-color: #eeebee; border:
 .site-nav, .site-header, .site-footer { width: 100%; }
 @media (min-width: 66.5rem) { .site-nav, .site-header, .site-footer { width: 264px; } }
 
-.site-nav { display: none; }
-.site-nav.nav-open { display: block; }
 .site-nav {
   display: none; /* Initially hide the navigation */
   padding-top: 3rem;
