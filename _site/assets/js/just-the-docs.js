@@ -23,21 +23,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Programming Fundamentals - SE-A | Fall 2023 - SE101 - PF</title>
+<title>Computing Fundamentals and Programming - CE | Fall 2023 - CE100 - CFP</title>
 <meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="Programming Fundamentals - SE-A" />
+<meta property="og:title" content="Computing Fundamentals and Programming - CE" />
 <meta name="author" content="UBS" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="This introductory course is aimed at the students with little or no programming experience, and it introduces students to the basics of computers and programming. On one hand they will learn basic topics of computing and usage, while on the other hand they will be exposed to programming language(s). By the end of course the student should be capable of programming in at least one programming language." />
 <meta property="og:description" content="This introductory course is aimed at the students with little or no programming experience, and it introduces students to the basics of computers and programming. On one hand they will learn basic topics of computing and usage, while on the other hand they will be exposed to programming language(s). By the end of course the student should be capable of programming in at least one programming language." />
 <link rel="canonical" href="http://localhost:4000/assets/js/just-the-docs.js" />
 <meta property="og:url" content="http://localhost:4000/assets/js/just-the-docs.js" />
-<meta property="og:site_name" content="Programming Fundamentals - SE-A" />
+<meta property="og:site_name" content="Computing Fundamentals and Programming - CE" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Programming Fundamentals - SE-A" />
+<meta property="twitter:title" content="Computing Fundamentals and Programming - CE" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"UBS"},"description":"This introductory course is aimed at the students with little or no programming experience, and it introduces students to the basics of computers and programming. On one hand they will learn basic topics of computing and usage, while on the other hand they will be exposed to programming language(s). By the end of course the student should be capable of programming in at least one programming language.","headline":"Programming Fundamentals - SE-A","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/ubs-itu.png"},"name":"UBS"},"url":"http://localhost:4000/assets/js/just-the-docs.js"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"UBS"},"description":"This introductory course is aimed at the students with little or no programming experience, and it introduces students to the basics of computers and programming. On one hand they will learn basic topics of computing and usage, while on the other hand they will be exposed to programming language(s). By the end of course the student should be capable of programming in at least one programming language.","headline":"Computing Fundamentals and Programming - CE","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/ubs-itu.png"},"name":"UBS"},"url":"http://localhost:4000/assets/js/just-the-docs.js"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -91,7 +91,7 @@
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
       
-        <ul class="nav-list"><li class="nav-list-item"><a href="http://localhost:4000/announcements/" class="nav-list-link">Announcements</a></li><li class="nav-list-item"><a href="http://localhost:4000/calendar/" class="nav-list-link">Calendar</a></li><li class="nav-list-item"><a href="http://localhost:4000/schedule/" class="nav-list-link">Schedule</a></li><li class="nav-list-item"><a href="http://localhost:4000/attendance/" class="nav-list-link">Attendance</a></li><li class="nav-list-item"><a href="http://localhost:4000/famepage/" class="nav-list-link">Page of Fame</a></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="http://localhost:4000/pages/details/" class="nav-list-link">Details</a><ul class="nav-list "><li class="nav-list-item "><a href="http://localhost:4000/pages/details/parts/" class="nav-list-link">Parts</a></li><li class="nav-list-item "><a href="http://localhost:4000/pages/details/outlines/" class="nav-list-link">Outlines</a></li><li class="nav-list-item "><a href="http://localhost:4000/pages/details/key/" class="nav-list-link">Key & Policy</a></li><li class="nav-list-item "><a href="http://localhost:4000/pages/details/tools/" class="nav-list-link">Tools</a></li></ul></li><li class="nav-list-item"><a href="http://localhost:4000/StudentProgressReport/" class="nav-list-link">Student Progress</a></li><li class="nav-list-item"><a href="http://localhost:4000/staff/" class="nav-list-link">Staff</a></li></ul>
+        <ul class="nav-list"><li class="nav-list-item"><a href="http://localhost:4000/announcements/" class="nav-list-link">Announcements</a></li><li class="nav-list-item"><a href="http://localhost:4000/calendar/" class="nav-list-link">Calendar</a></li><li class="nav-list-item"><a href="http://localhost:4000/schedule/" class="nav-list-link">Schedule</a></li><li class="nav-list-item"><a href="http://localhost:4000/attendance/" class="nav-list-link">Attendance</a></li><li class="nav-list-item"><a href="http://localhost:4000/StudentGroup/" class="nav-list-link">Student Group</a></li><li class="nav-list-item"><a href="http://localhost:4000/StudentProgressReport/" class="nav-list-link">Student Progress</a></li><li class="nav-list-item"><a href="#" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a><a href="http://localhost:4000/pages/details/" class="nav-list-link">Details</a><ul class="nav-list "><li class="nav-list-item "><a href="http://localhost:4000/pages/details/parts/" class="nav-list-link">Parts</a></li><li class="nav-list-item "><a href="http://localhost:4000/pages/details/outlines/" class="nav-list-link">Outlines</a></li><li class="nav-list-item "><a href="http://localhost:4000/pages/details/key/" class="nav-list-link">Key & Policy</a></li><li class="nav-list-item "><a href="http://localhost:4000/pages/details/tools/" class="nav-list-link">Tools</a></li></ul></li><li class="nav-list-item"><a href="http://localhost:4000/famepage/" class="nav-list-link">Page of Fame</a></li><li class="nav-list-item"><a href="http://localhost:4000/staff/" class="nav-list-link">Staff</a></li></ul>
 
       
     </nav>
@@ -104,7 +104,7 @@
       
         <div class="search">
           <div class="search-input-wrap">
-            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Programming Fundamentals - SE-A" aria-label="Search Programming Fundamentals - SE-A" autocomplete="off">
+            <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Computing Fundamentals and Programming - CE" aria-label="Search Computing Fundamentals and Programming - CE" autocomplete="off">
             <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
           </div>
           <div id="search-results" class="search-results"></div>
@@ -116,10 +116,10 @@
           <ul class="aux-nav-list">
             
               <li class="aux-nav-list-item">
-                <a href="https://ubs.dev" class="site-button"
+                <a href="" class="site-button"
                   
                 >
-                  Usama Bin Shakeel
+                  Nadir Abbas
                 </a>
               </li>
             

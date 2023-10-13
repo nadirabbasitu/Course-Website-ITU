@@ -38,5 +38,22 @@ nav_order: 4
 
 <script src="../assets/js/library.js"></script>
 <script>
+        const siteButton = document.getElementById('menu-button');
+        const siteNav = document.querySelector('.site-nav');
+
+        let isVisible = false;
+
+        siteButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (isVisible) {
+                siteNav.style.display = 'none';
+                isVisible = false;
+            } else {
+                siteNav.style.display = 'block';
+                isVisible = true;
+            }
+        });
+    </script>
+<script>
     library.attendance("{{site.courseDetails_sheet_url}}", "{{site.attendance_and_std_progress_sheet_tab}}",{{site.site_mode_isOffline}});
 </script>

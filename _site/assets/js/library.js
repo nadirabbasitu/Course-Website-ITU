@@ -1,8 +1,41 @@
 var library = (function () {
 
-    function read_CSV_file_data(fileName, callBackMethod, containerName) {
+    //  this method is for offline mode to make calender and announcement data as we required
+    function groupByWeek(data) {
+        const weeksArray = {};
+        data?.forEach((item) => {
+            const week = item.week;
+
+            if (!weeksArray[week]) {
+                weeksArray[week] = [];
+            }
+
+            weeksArray[week].push(item);
+        });
+
+        const resultArray = Object.keys(weeksArray).map((week) => ({
+            [week]: weeksArray[week],
+        }));
+
+        return resultArray;
+    }
+
+    // *************
+    function read_CSV_file_data(fileName, callBackMethod, containerName, viewType) {
         // staff.csv
-        fetch(`../assets/csv_files/${fileName}`)
+
+        let filePath = "";
+
+        if (viewType === "details") {
+            filePath = `../../assets/csv_files/${fileName}`
+        } else if (viewType === "tools" || "outlines") {
+            filePath = `../../../assets/csv_files/${fileName}`
+        } else {
+            filePath = `../assets/csv_files/${fileName}`
+        }
+
+
+        fetch(filePath)
             .then(response => response.text())
             .then(csvText => {
                 const rows = csvText.split('\n');
@@ -17,16 +50,19 @@ var library = (function () {
                         const rowObject = {};
                         for (let j = 0; j < headers.length; j++) {
                             const value = rowValues[j].replace(/\r/g, '');
-                            // console.log("rowValues cehkkkkkk****",value)
+
 
                             rowObject[headers[j]] = value;
                         }
-                        // console.log("rowObject cehkkkkkk****",rowObject)
                         jsonData.push(rowObject);
                     }
                 }
 
-                callBackMethod(jsonData, containerName)
+                if (containerName !== "") {
+                    callBackMethod(jsonData, containerName)
+                } else {
+                    callBackMethod(jsonData)
+                }
             })
             .catch(error => {
                 console.error('noot worrrking:', error);
@@ -35,7 +71,6 @@ var library = (function () {
 
     function getColors(colorType) {
 
-        // console.log("colortype", colorType)
         switch (colorType) {
             case "Announcement":
                 return "#e7af06"
@@ -49,18 +84,15 @@ var library = (function () {
         }
     }
 
-    // Add your code here
-    document.addEventListener("DOMContentLoaded", function() {
-        const siteButton = document.querySelector(".site-button");
-        const siteNav = document.querySelector(".site-nav");
+    function getFormattedDate(date) {
+        const rawDate = new Date(date);
 
-        siteButton.addEventListener("click", function() {
-            if (window.innerWidth < 800 && window.innerHeight < 656) {
-                siteNav.classList.toggle("active"); // Toggle the 'active' class
-            }
-        });
-    });
-    
+        const options = { year: 'numeric', month: 'short', day: '2-digit' };
+        const formattedDate = rawDate.toLocaleDateString('en-US', options);
+
+        return formattedDate;
+    }
+
     function announcement_createContent(item) {
 
         let announcementDiv = document.getElementById("announcement_container");
@@ -89,12 +121,17 @@ var library = (function () {
         function announcement_getItemLists(objKeys, item) {
 
             let items = item[objKeys]?.map((val) => {
+
+                let date = val.date ? getFormattedDate(val.date) : "";
+                let deadline = val.deadline ? getFormattedDate(val.deadline) : "";
+
+
                 if (val.type !== "" && (val.type == "Announcement" || val.type === "Lab" || val.type === "Assignment")) {
                     if (val.type == "Announcement") {
-                        return `<li> <div> <span style="color: ${getColors(val.type)}; font-weight: bold">${val.type} ${val.no} </span> : ${val.date !== "" ? "Date" : ""} <span style="color: #7253ed; font-style: italic"> ${val.date} </span> </div> <div style="padding-left: 20px; padding-right: 60px"> ${val.text} </div> </li>`
+                        return `<li> <div> <span style="color: ${getColors(val.type)}; font-weight: bold">${val.type} ${val.no} </span> : ${date !== "" ? "Date" : ""} <span style="color: #7253ed; font-style: italic"> ${date} </span> </div> <div style="padding-left: 20px; padding-right: 60px"> ${val.text} </div> </li>`
                     }
                     else if (val.type == "Lab" || val.type == "Assignment") {
-                        return `<li> <span style="color: ${getColors(val.type)}; font-weight: bold">${val.type} ${val.no} </span> : Deadline <span style="color: #7253ed; font-style: italic"> ${val.deadline} </span> </li>`
+                        return `<li> <span style="color: ${getColors(val.type)}; font-weight: bold">${val.type} ${val.no} </span> : Deadline <span style="color: #7253ed; font-style: italic"> ${deadline} </span> </li>`
                     }
                 }
             }).filter(e => e !== undefined)
@@ -116,7 +153,6 @@ var library = (function () {
         let heading = document.createElement("h2");
         heading.classList.add("fs-4");
 
-        // console.log("ObjectkeysObjectkeys******* ", Object.keys(item)[0])
         heading.innerHTML = `${Object.keys(item)[0]}`
 
         let cardDHTML = `
@@ -128,26 +164,29 @@ var library = (function () {
         calendarDiv.appendChild(calendarContainer);
 
         function calendar_getItemLists(objKeys, item) {
-
             let items = item[objKeys]?.map((val) => {
+
+                let date = val.date ? getFormattedDate(val.date) : "";
+                let deadline = val.deadline ? getFormattedDate(val.deadline) : "";
+
                 if (val.type !== "") {
                     if (val.type == "Notice") {
-                        return createNoticeList(val.date, val.text)
+                        return createNoticeList(date, val.text)
                     }
                     else if (val.type == "Lecture") {
-                        return createLecList(val.date, val.type, val.no, val.makeup, val.text, val.link)
+                        return createLecList(date, val.type, val.no, val.makeup, val.text, val.link)
                     }
                     else if (val.type == "Quiz") {
-                        return createQuizList(val.date, val.type, val.no, val.text, val.link, val.solution_link, val.deadline)
+                        return createQuizList(date, val.type, val.no, val.text, val.link, val.solution_link, deadline)
                     }
                     else if (val.type == "Lab") {
-                        return createLabList(val.date, val.makeup, val.type, val.no, val.text, val.link, val.solution_link, val.deadline)
+                        return createLabList(date, val.makeup, val.type, val.no, val.text, val.link, val.solution_link, deadline)
                     }
                     else if (val.type == "Assignment") {
-                        return createAssignmentList(val.date, val.type, val.no, val.text, val.link, val.solution_link, val.deadline)
+                        return createAssignmentList(date, val.type, val.no, val.text, val.link, val.solution_link, deadline)
                     }
                 }
-            }).filter(e => e !== undefined)
+            }).filter(e => e !== undefined).reverse();
 
             // for simple notice 
             function createNoticeList(noticeDate, notice) {
@@ -162,7 +201,6 @@ var library = (function () {
                 )
             }
             function createLecList(date, type, no, makeup, text, link) {
-                // console.log("lecLink", lecLink)
                 return (
                     `
                         <dl>
@@ -177,7 +215,6 @@ var library = (function () {
                 )
             }
             function createQuizList(date, type, no, text, link, solLink, deadline) {
-                // console.log("lecLink", lecLink)
                 return (
                     `
                         <dl>
@@ -234,8 +271,6 @@ var library = (function () {
                 )
             }
 
-            // console.log("items **** ", items)
-
             if (items) {
                 const itemsHTML = items.join("");
                 return itemsHTML;
@@ -246,16 +281,14 @@ var library = (function () {
     }
 
     function famePage_createContent(item, container) {
-        // console.log("item::", item.student_name)
         let parentDiv = document.getElementById(container);
         let fameDiv = document.createElement("div");
         fameDiv.classList.add("staffer");
         let responsiveClass = `${container == "overall_top_std" ? "fame-responsive" : "no-responsive"}`
-        // console.log("responsiveClass ::: ", responsiveClass, "for :::", container)
         fameDiv.classList.add(responsiveClass);
         const divContainer = `${container === "top_std_of_week" ?
             `
-                <img class="staffer-image" src="/assets/images/students/${item.image ? item.image : "placeholder.jpg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image">
+                <img class="staffer-image" src="../assets/images/students/${item.image ? item.image : "placeholder.jpg"}" onerror="this.src='../assets/images/students/placeholder.jpg';" alt="user-image">
                     <div>
                         <h3 class="staffer-name">
                             ${item.student_name}
@@ -266,7 +299,7 @@ var library = (function () {
             `
             :
             `${item.student_name !== "" ? `<div class="fame-std-container">
-                <img class="staffer-image" style="width: 100px" src="/assets/images/students/${item.image ? item.image : "placeholder.jpg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image">
+                <img class="staffer-image" style="width: 100px" src="../assets/images/students/${item.image ? item.image : "placeholder.jpg"}" onerror="this.src='../assets/images/students/placeholder.jpg';" alt="user-image">
                 <div class="fame-detailContainer">
                     <h3 class="staffer-name">
                         ${item.student_name}
@@ -275,7 +308,7 @@ var library = (function () {
                     <p>${item.position ? item.position : ""}</p>
                 </div>
                 </div>
-                ${item.position !== "" ? `<div class="fame-position-image"><img class="staffer-image fame-badge-image" src="/assets/images/positions/${item.position && item.position + ".jpeg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image"></div>` : ""}` : ""}`
+                ${item.position !== "" ? `<div class="fame-position-image"><img class="staffer-image fame-badge-image" src="../assets/images/positions/${item.position && item.position + ".jpeg"}" onerror="this.src='../assets/images/students/placeholder.jpg';" alt="user-image"></div>` : ""}` : ""}`
             }`
         fameDiv.innerHTML = divContainer;
         parentDiv.appendChild(fameDiv);
@@ -288,13 +321,13 @@ var library = (function () {
 
         const divContainer =
             `
-                <img class="staffer-image" src="/assets/images/staff/${item.image ? item.image : "placeholder.jpg"}" onerror="this.src='/assets/images/students/placeholder.jpg';" alt="user-image">
+                <img class="staffer-image" src="../assets/images/staff/${item.Image ? item.Image : "placeholder.jpg"}" onerror="this.src='../assets/images/students/placeholder.jpg';" alt="user-image">
                 <div>
                     <h3 class="staffer-name">
-                        ${item.name}
+                        ${item.Name}
                     </h3>
-                    ${item.email !== "" || item.email !== "n" ? `<p><a href="mailto:${item.email}">${item.email}</a></p>` : ""}
-                    ${item.appointment == "n" ? "" : item.appointment == "y" && item.appointment_link !== "" ? `<p><a href="${item.appointment_link}" class="btn btn-outline">Book TA appointment</a></p>` : ""}
+                    ${item.Email !== "" || item.Email !== "n" ? `<p><a href="mailto:${item.Email}">${item.Email}</a></p>` : ""}
+                    ${item.Appointment == "n" ? "" : item.Appointment == "y" && item.Appointment_link !== "" ? `<p><a href="${item.Appointment_link}" class="btn btn-outline">Book TA appointment</a></p>` : ""}
                 </div>
             `
 
@@ -302,42 +335,163 @@ var library = (function () {
         parentDiv.appendChild(stafferDiv);
     }
 
-    return {
-        announcements: function (url, sheetName, site_mode_isOffline, csvSheetName) {
+    function generateCheckboxes(typesList, containerId) {
+        const container = document.getElementById(containerId);
 
-            // console.log("***** ANNOUNCEMENT PAGE ***** ")
-            // console.log("***** url *****", url)
-            // console.log("***** sheet *****", sheetName)
+        if (container) {
+            typesList.forEach(type => {
+                // Create a div to hold the checkbox and label
+                const checkboxDiv = document.createElement('div');
+                checkboxDiv.className = 'mr-4'; // Add the 'mr-4' class
+
+                // Create a checkbox element
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = type.toLowerCase().replace(/\s+/g, '-'); // Use lowercase and replace spaces with hyphens for ID
+                checkbox.name = type;
+
+                // Create a label element
+                const label = document.createElement('label');
+                label.htmlFor = checkbox.id; // Match the label's 'for' attribute with the checkbox's ID
+                label.appendChild(document.createTextNode(type));
+                label.className = 'pl-2';
+
+                // Append the checkbox and label to the div
+                checkboxDiv.appendChild(checkbox);
+                checkboxDiv.appendChild(label);
+
+                // Append the div to the container
+                container.appendChild(checkboxDiv);
+            });
+        }
+    }
+
+
+    return {
+        staticData: function (url, sheetName, dataRequiredFor, viewType, site_mode_isOffline, csvSheetName) {
+            const sheet = sheetName;
+            // data required for is used into app script for check
+            const newURL = url + '?data=' + sheet + '&dataRequiredFor=' + dataRequiredFor;
+
+            const loading = document.getElementById("loader");
+            loading.setAttribute('class', "loader")
+
+
+            let announcement_btn = ""
+
+            if (viewType === "indexView") {
+                announcement_btn = document.getElementById("ann-btn");
+                announcement_btn.setAttribute('class', 'd-none')
+            }
+
+            if (site_mode_isOffline === false) {
+
+                loadData();
+            } else {
+                read_CSV_file_data(`${csvSheetName}.csv`, mapThroughDataForStaticData, "", viewType)
+            }
+
+            function loadData() {
+                fetch(newURL).then(response => response.json()).then(data => {
+                    loading.classList.add("d-none");
+                    if (viewType === "indexView") {
+                        announcement_btn.classList.remove('d-none');
+                        populateIndex(data.data[0])
+                    } else if (viewType === "scheduleView") {
+                        populateSchedule(data.data[0])
+                    } else if (viewType === "details") {
+                        populateDetails(data.data[0])
+                    } else if (viewType === "tools") {
+                        populateTools(data.data[0])
+                    }
+                })
+            }
+
+            function mapThroughDataForStaticData(data) {
+                if (viewType === "indexView") {
+                    populateIndex(data[0])
+                    announcement_btn.classList.remove('d-none');
+                } else if (viewType === "scheduleView") {
+                    populateSchedule(data[0])
+                } else if (viewType === "details") {
+                    populateDetails(data[0])
+                } else if (viewType === "tools") {
+                    populateTools(data[0])
+                }
+                loading.classList.add("d-none");
+            }
+
+            function populateIndex(data) {
+
+                const tagLineElement = document.getElementById('tagLine');
+                const titleElement = document.getElementById('title');
+                const descriptionElement = document.getElementById('description');
+
+                tagLineElement.textContent = data.tagline;
+                titleElement.textContent = data.title;
+                descriptionElement.textContent = data.course_description;
+
+            }
+
+            function populateSchedule(data) {
+                const ubsAppointmentLink = document.getElementById('ubs_appointment_url');
+                ubsAppointmentLink.target = '_blank';
+                const taAppointmentLink = document.getElementById('ta_appointment_url');
+                taAppointmentLink.target = '_blank';
+
+                ubsAppointmentLink.href = data.ubs_appointment_url;
+                taAppointmentLink.href = data.ta_appointment_url;
+            }
+
+            function populateDetails(data) {
+                const descriptionElement = document.getElementById('description');
+                descriptionElement.textContent = data.course_description;
+            }
+
+            function populateTools(data) {
+                guide_for_tools_url.target = '_blank';
+                reading_material_for_github_url.target = '_blank';
+                guide_for_tools_url.href = data.guide_for_tools_url;
+                reading_material_for_github_url.href = data.reading_material_for_github_url;
+            }
+
+
+        },
+        announcements: function (url, sheetName, site_mode_isOffline, csvSheetName) {
 
             const sheet = sheetName;
             const loading = document.getElementById("loader");
             const newURL = url + '?data=' + sheet;
 
             if (site_mode_isOffline === false) {
-                // console.log("online mode")
+
                 loadData();
             } else {
-                // console.log("offline mode")
+
                 read_CSV_file_data(`${csvSheetName}.csv`, mapThroughData)
             }
 
             function loadData() {
                 fetch(newURL).then((rep) => rep.json()).then((data) => {
-                    const listData = data.data;
-
-                    // console.log("response data ********* ", listData)
+                    const listData = data.data.reverse();
                     mapThroughData(listData)
                 })
             }
 
             function mapThroughData(data) {
 
-                // console.log("data ******** ", data)
+                let resData = "";
+
+                if (site_mode_isOffline) {
+                    resData = groupByWeek(data)
+                } else {
+                    resData = data
+                }
+
 
                 loading.remove();
-                const arrayData = [];
-                data && data?.reverse().map(item => {
-                    // console.log(Object.keys(item)[0])
+
+                resData && resData?.map(item => {
                     if (Object.keys(item)[0] !== "") {
                         announcement_createContent(item)
                     }
@@ -347,45 +501,41 @@ var library = (function () {
         },
         calender: function (url, sheetName, site_mode_isOffline, csvSheetName) {
 
-            // console.log("***** CALENDER PAGE ***** ")
-
             const sheet = sheetName;
             const loading = document.getElementById("loader");
             const newURL = url + '?data=' + sheet;
 
             if (site_mode_isOffline === false) {
-                // console.log("online mode")
                 loadData();
             } else {
-                // console.log("offline mode")
-                // read_CSV_file_data("website_week_data.csv", mapThroughData)
                 read_CSV_file_data(`${csvSheetName}.csv`, mapThroughData)
             }
-
-            // console.log("newURL",newURL)
             function loadData() {
                 fetch(newURL).then((rep) => rep.json()).then((data) => {
-                    const listData = data.data;
+                    const listData = data.data.reverse();
                     mapThroughData(listData)
                 })
             }
 
             function mapThroughData(data) {
-                // console.log("data inside mapThroughData 23:::", data)
+
+                let resData = "";
+
+                if (site_mode_isOffline) {
+                    resData = groupByWeek(data)
+                } else {
+                    resData = data
+                }
+
                 loading.remove();
 
-                data && data?.reverse().map(item => {
+                resData && resData?.map(item => {
                     calendar_createContent(item)
                 })
             }
 
         },
         pageOfFame: function (url, sheetName, sheetName_2, site_mode_isOffline, csvTopStdWeek, csvOverAllTop) {
-            // console.log("***** PAGE OF FAME ***** ",site_mode_isOffline)
-
-            // console.log("***** url *****", url)
-            // console.log("***** sheet *****", sheetName)
-            // console.log("***** sheet2 *****", sheetName_2)
 
             const loading = document.getElementById("loader");
             // loadData();
@@ -396,13 +546,10 @@ var library = (function () {
             const newURL2 = url + '?data=' + sheet2;
 
             if (site_mode_isOffline === false) {
-                // console.log("online mode")
                 loadData();
             } else {
-                // console.log("offline mode")
                 read_CSV_file_data(`${csvTopStdWeek}.csv`, mapThroughData, "top_std_of_week")
 
-                // read_CSV_file_data(`${csvSheetName}.csv`, mapThroughData)
                 read_CSV_file_data(`${csvOverAllTop}.csv`, mapThroughData, "overall_top_std")
             }
 
@@ -421,7 +568,6 @@ var library = (function () {
             function mapThroughData(data, container) {
                 loading.remove();
                 data && data?.map(item => {
-                    // console.log("item.student_name", item.student_name)
                     if (item.student_name !== "") {
                         famePage_createContent(item, container)
                     }
@@ -429,17 +575,14 @@ var library = (function () {
             }
 
         },
-        staff: function (url, sheetName, site_mode_isOffline, csvSheetName) {
-
+        staff: function (url, sheetName, reqDataType, site_mode_isOffline, csvSheetName) {
             const loading = document.getElementById("loader");
             const sheet = sheetName;
-            const newURL = url + '?data=' + sheet;
+            const newURL = url + '?data=' + sheet + '&dataRequiredFor=' + reqDataType;
 
             if (site_mode_isOffline === false) {
-                // console.log("online mode")
                 loadData();
             } else {
-                // console.log("offline mode")
                 read_CSV_file_data(`${csvSheetName}.csv`, mapThroughData)
             }
 
@@ -448,12 +591,14 @@ var library = (function () {
                     const listData = data.data;
                     mapThroughData(listData)
                 })
+
+
             }
 
             function mapThroughData(data) {
                 loading.remove();
                 data && data?.map(item => {
-                    if (item.role == "Instructor") {
+                    if (item.Designation == "Instructor") {
                         staff_createContent(item, "instructors_list")
                     }
                     else {
@@ -463,10 +608,6 @@ var library = (function () {
             }
         },
         attendance: function (url, sheetName, site_mode_isOffline) {
-
-            // console.log("***** ATTENDANCE PAGE ***** ")
-            // console.log("***** url *****", url)
-            // console.log("***** sheet *****", sheetName)
 
             if (site_mode_isOffline) {
                 return;
@@ -507,8 +648,7 @@ var library = (function () {
                         // loading.remove();
                         loading.classList.add("d-none");
                         const attendanceData = data.data;
-                        // console.log("data ****", data)
-                        // console.log("sheet ******** ", sheet)
+
                         let result = attendanceData.filter(e => e.registration_no == value.toUpperCase())
 
                         if (result.length > 0) {
@@ -613,29 +753,73 @@ var library = (function () {
             }
 
             const loading = document.getElementById("loader");
+            loading.setAttribute('class', "loader")
             const requestRecordButton = document.getElementById("requestRecordButton")
+
             requestRecordButton.addEventListener("click", function () {
                 getInput();
             });
+            requestRecordButton.disabled = true;
 
-            const checkboxes = document.querySelectorAll("#options input[type='checkbox']");
-            checkboxes.forEach(function (checkbox) {
-                checkbox.addEventListener("change", function () {
-                    setCheckBox(checkbox.id);
+            const sheet = sheetName;
+            let requestFor = "typesList"
+
+            const newURL = courseDetails_sheet_url + '?data=' + sheet + "&requestedType=" + requestFor;
+            // console.log(newURL)
+
+            const checkBoxesVals = {};
+
+            function generateObjectOfOptions(list) {
+                list.forEach(element => {
+                    const val = element.toLowerCase().replace(/\s+/g, '-')
+                    checkBoxesVals[val] = "n"
                 });
-            });
+            }
 
+            async function fetchDataAndGenerateCheckboxes(newURL) {
+                try {
+                    const response = await fetch(newURL);
+                    const data = await response.json();
 
-            // console.log("here is amassssss")
+                    if (data.data.message === "requested for types only.") {
+                        const list = data.data.list;
+                        generateCheckboxes(list, "options");
+                        generateObjectOfOptions(list)
+                    }
+                    // console.log("Fetch completed.");
 
-            const sheet = sheetName; //"attendance"
+                    const checkboxes = document.querySelectorAll("#options input[type='checkbox']");
+                    checkboxes.forEach(function (checkbox) {
+                        checkbox.addEventListener("change", function () {
+                            // console.log("Checkbox ID:", checkbox.id);
+                            setCheckBox(checkbox.id);
+                        });
+                    });
+                    loading.classList.add("d-none");
+                    requestRecordButton.disabled = false;
+                } catch (error) {
+                    loading.classList.add("d-none");
+                    requestRecordButton.disabled = false;
+                    console.error("Error fetching data:", error);
+                }
+            }
 
+            fetchDataAndGenerateCheckboxes(newURL);
 
-            let quiz1 = false;
-            let quiz2 = false;
-            let assignment = false;
-            let labA = false;
-            let labB = false;
+            function setCheckBox(checkboxId) {
+                const checkbox = document.getElementById(checkboxId);
+                const updatedCheckBoxesVals = { ...checkBoxesVals };
+                if (checkbox) {
+                    if (checkbox.checked) {
+                        updatedCheckBoxesVals[checkboxId] = "y";
+                    } else {
+                        updatedCheckBoxesVals[checkboxId] = "n";
+                    }
+                    Object.assign(checkBoxesVals, updatedCheckBoxesVals);
+                }
+                // console.log("checkBoxesVals**** ", checkBoxesVals)
+            }
+
 
             let errorMsg = document.getElementById("errorMsg")
             errorMsg.setAttribute('style', "color: red");
@@ -646,74 +830,174 @@ var library = (function () {
                 let rollNumber = document.getElementById('rollNumber').value;
 
                 errorMsg.innerText = "";
+
+                const hasTrueValue = Object.values(checkBoxesVals).some(value => value === "y");
+
                 if (!rollNumber.trim().length) {
-                    // console.log("Please Enter Roll no.",rollNumber)
                     loading.classList.add("d-none");
-                    errorMsg.innerText = "Please enter Roll No."
                     requestRecordButton.disabled = false;
+                    errorMsg.innerText = "Please enter Roll No."
                 } else {
                     let value = rollNumber.split(' ').join('');
-                    if (quiz1 == false && quiz2 == false && assignment == false && labA == false && labB == false) {
-                        // console.log("Please Enter Roll no.",rollNumber)
+                    if (!hasTrueValue) {
                         loading.classList.add("d-none");
                         errorMsg.innerText = "Please select atleast single option."
                         requestRecordButton.disabled = false;
+                        // console.log("no there is not true value")
+
                     } else {
+                        // console.log("yes there is true value")
                         loadData(value);
                     }
                 }
             }
 
-            function setCheckBox(checkBoxId) {
-                switch (checkBoxId) {
-                    case "quiz1":
-                        quiz1 = !quiz1;
-                        break;
-                    case "quiz2":
-                        quiz2 = !quiz2;
-                        break;
-                    case "assignment":
-                        assignment = !assignment;
-                        break;
-                    case "labA":
-                        labA = !labA;
-                        break;
-                    case "labB":
-                        labB = !labB;
-                        break;
-                    default:
-                        break;
+            function loadData(data) {
+                let requestForStd = "studentReport";
+                let rollNo = data
+
+                // Build the tList parameter manually
+                let tListParams = [];
+                for (const key in checkBoxesVals) {
+                    if (checkBoxesVals.hasOwnProperty(key)) {
+                        tListParams.push(`${key}=${checkBoxesVals[key]}`);
+                    }
+                }
+                const tListQueryString = tListParams.join('&');
+                // console.log("***123**** ", tListQueryString)
+                // Construct the complete URL
+                let newUrlIs = courseDetails_sheet_url + `?data=${sheet}&requestedType=${requestForStd}&${tListQueryString}` + "&rollNo=" + rollNo;
+
+                fetch(newUrlIs).then(res => res.json()).then(data => {
+                    if (rollNo === "TEST") {
+                        console.log("data in std fetch ***** ", data);
+                        console.log("tListQueryString in std fetch ***** ", tListQueryString);
+                    }
+
+                    const resMessage = data.data.message;
+                    const statusCode = data.data.status;
+                    if (statusCode === 200) {
+                        errorMsg.removeAttribute('style', "color: red");
+                        errorMsg.setAttribute('style', "color: #41d693");
+                        errorMsg.innerText = resMessage;
+                    } else {
+                        errorMsg.innerText = resMessage;
+                    }
+
+                    loading.classList.add("d-none");
+                    requestRecordButton.disabled = false;
+                });
+            }
+        },
+
+        stdStudentGroup: function (url, sheetName, site_mode_isOffline) {
+
+            // console.log("url ******* ", url)
+            // console.log("sheetName ******* ", sheetName)
+            // console.log("mode ******* ", site_mode_isOffline)
+
+            const sheet = sheetName;
+
+
+
+            if (site_mode_isOffline) {
+                return;
+            }
+
+            const loading = document.getElementById("loader");
+            const requestRecordButton = document.getElementById("requestRecordButton")
+
+            requestRecordButton.addEventListener("click", function () {
+                getInput();
+            });
+
+            let errorMsg = document.getElementById("errorMsg")
+            errorMsg.setAttribute('style', "color: red");
+
+            function getInput() {
+                loading.setAttribute('class', "loader")
+                requestRecordButton.disabled = true;
+                let rollNumber = document.getElementById('rollNumber').value;
+
+                errorMsg.innerText = "";
+
+                if (!rollNumber.trim().length) {
+                    errorMsg.innerText = "Please enter Roll No."
+                } else {
+                    let value = rollNumber.split(' ').join('');
+                    loadData(value);
+
                 }
             }
 
-            function loadData(requested_rollNo) {
-                const rollNo = requested_rollNo;
-                const quiz1ValSet = quiz1 == true ? "y" : "n";
-                const quiz2ValSet = quiz2 == true ? "y" : "n";
-                const assignmentValSet = assignment == true ? "y" : "n";
-                const labAValSet = labA == true ? "y" : "n";
-                const labBValSet = labB == true ? "y" : "n";
+            function loadData(value) {
+                let rollNo = value;
+                let newUrl = url + "?data=" + sheet + "&rollNo=" + rollNo;
 
-
-
-                const newURL = courseDetails_sheet_url + '?data=' + sheet + "&rollNo=" + rollNo + "&quiz1=" + quiz1ValSet + "&quiz2=" + quiz2ValSet + "&assignment=" + assignmentValSet + "&labA=" + labAValSet + "&labB=" + labBValSet;
-
-                fetch(newURL).then(response => response.json()).then(data => {
+                fetch(newUrl).then(res => res.json()).then(data => {
                     const resMessage = data.data.message;
-                    const statusCode = data.data.status;
+                    const stdList = data.data && data?.data?.list;
 
-                    if(statusCode === 200) {
-                    errorMsg.removeAttribute('style', "color: red");
-                    errorMsg.setAttribute('style', "color: #41d693");    
-                    errorMsg.innerText = resMessage;
-                    }else{
+                    if (stdList?.length > 0) {
+                        // console.log("stdlist **** ", stdList)
+                        createStudentList(stdList)
+                    } else {
+                        errorMsg.setAttribute('style', "color: red");
+                        // console.log("here we are")
                         errorMsg.innerText = resMessage;
                     }
+
                     loading.classList.add("d-none");
                     requestRecordButton.disabled = false;
-                    // console.log("student data progress **** ", data);
-                })
+                });
+
+
+                function createStudentList(studentArray) {
+                    const ulContainer = document.getElementById('ul_container');
+                
+                    // Loop through the studentArray and create list items for each student
+                    studentArray.forEach((student, index) => {
+                        const li = document.createElement('li');
+                        li.classList.add('d-flex');
+                        
+                        // Create and append the rollNumber, name, and groupLetter to the li
+                        ['rollNumber', 'name', 'groupLetter'].forEach(key => {
+                            const div = document.createElement('div');
+                            
+                            // Assign width classes based on the key
+                            if (key === 'rollNumber') {
+                                div.classList.add('width30');
+                            } else if (key === 'name') {
+                                div.classList.add('width50');
+                            } else if (key === 'groupLetter') {
+                                div.classList.add('width25');
+                            }
+                            
+                            div.innerHTML = `<span>${student[key]}</span>`;
+                            li.appendChild(div);
+                        });
+                
+                        // Add border-bottom to all list items except the last one
+                        if (index < studentArray.length - 1) {
+                            li.style.borderBottom = '1px solid #ede7e7';
+                            li.style.paddingBottom = '10px';
+                            li.style.paddingTop = '6px';
+                        }else{
+                            li.style.paddingTop = '6px';
+                        }
+                
+                        ulContainer.appendChild(li);
+                    });
+                }
+                
+                
+
+
+
+
+
             }
-        },
+
+        }
     };
 })();

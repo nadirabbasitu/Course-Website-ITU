@@ -18,5 +18,22 @@ description: Listing of course modules and topics.
 </script> -->
 <script src="../assets/js/library.js"></script>
 <script>
+        const siteButton = document.getElementById('menu-button');
+        const siteNav = document.querySelector('.site-nav');
+
+        let isVisible = false;
+
+        siteButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (isVisible) {
+                siteNav.style.display = 'none';
+                isVisible = false;
+            } else {
+                siteNav.style.display = 'block';
+                isVisible = true;
+            }
+        });
+    </script>
+<script>
     library.calender("{{site.courseDetails_sheet_url}}", "{{site.announcemet_and_calender_sheet_tab}}",{{site.site_mode_isOffline}}, "{{site.announcement_and_calender_csv}}");
 </script>

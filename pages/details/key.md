@@ -16,7 +16,7 @@ description: >-
 {:toc}
 
 ---
-
+<link rel="stylesheet" href="https://nadirabbasitu.github.io/fall2023-ce100/assets/css/style.css">
 ## Key:
 
 ![image]({{ imagePrefix }}assets/images/policy/key.png)
@@ -99,3 +99,21 @@ description: >-
 * In semester system every lecture / topic is connected to next topic, similarly every course is connected to next course. If you don’t keep your concepts clear, you might not only suffer in the respective course but that deficiency might carry on for the complete chain of courses.
 * Forget about rote learning, focus on concepts, understanding and skills.
 * If you keep discipline and ethics mentioned above, with eagerness to learn, you have In sha Allah a very bright future ahead. **Happy Learning** . :) 
+
+<script>
+        const siteButton = document.getElementById('menu-button');
+        const siteNav = document.querySelector('.site-nav');
+
+        let isVisible = false;
+
+        siteButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (isVisible) {
+                siteNav.style.display = 'none';
+                isVisible = false;
+            } else {
+                siteNav.style.display = 'block';
+                isVisible = true;
+            }
+        });
+    </script>

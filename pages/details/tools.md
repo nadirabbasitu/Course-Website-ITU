@@ -30,3 +30,20 @@ description: >-
     library.staticData("{{site.courseDetails_sheet_url}}", "{{site.courseDetails}}","general_site_details", "tools" ,{{site.site_mode_isOffline}}, "{{site.general_data_csv}}");
 </script>
 
+<script>
+        const siteButton = document.getElementById('menu-button');
+        const siteNav = document.querySelector('.site-nav');
+
+        let isVisible = false;
+
+        siteButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (isVisible) {
+                siteNav.style.display = 'none';
+                isVisible = false;
+            } else {
+                siteNav.style.display = 'block';
+                isVisible = true;
+            }
+        });
+    </script>
