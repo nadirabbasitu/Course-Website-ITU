@@ -48,27 +48,14 @@ var library = (function () {
                 break;
         }
     }
-
+    
     document.addEventListener("DOMContentLoaded", function() {
-        const menuButton = document.getElementById("menu-button");
-        const siteNav = document.getElementById("siteNav");
+        const siteButton = document.querySelector(".site-button");
+        const siteNav = document.querySelector(".site-nav");
     
-        menuButton.addEventListener("click", function(e) {
-            e.preventDefault();
+        siteButton.addEventListener("click", function() {
             if (window.innerWidth < 800 && window.innerHeight < 656) {
-                if (siteNav.style.display === "none") {
-                    siteNav.style.display = "block"; // Show the navigation
-                } else {
-                    siteNav.style.display = "none"; // Hide the navigation
-                }
-            }
-        });
-    
-        window.addEventListener("resize", function() {
-            if (window.innerWidth >= 800 || window.innerHeight >= 656) {
-                siteNav.style.display = "block"; // Show the navigation if the window size is larger than 800x656
-            } else {
-                siteNav.style.display = "none"; // Hide the navigation if the window size is less than 800x656
+                siteNav.classList.toggle("active"); // Toggle the 'active' class
             }
         });
     });
