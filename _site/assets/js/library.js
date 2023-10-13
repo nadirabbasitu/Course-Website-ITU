@@ -1,14 +1,5 @@
 var library = (function () {
-    document.addEventListener("DOMContentLoaded", function() {
-        const siteButton = document.querySelector(".site-button");
-        const siteNav = document.querySelector(".site-nav");
-    
-        siteButton.addEventListener("click", function() {
-            if (window.innerWidth < 800 && window.innerHeight < 656) {
-                siteNav.classList.toggle("active"); // Toggle the 'active' class
-            }
-        });
-    });
+
     function read_CSV_file_data(fileName, callBackMethod, containerName) {
         // staff.csv
         fetch(`../assets/csv_files/${fileName}`)
@@ -58,8 +49,18 @@ var library = (function () {
         }
     }
 
-    
+    // Add your code here
+    document.addEventListener("DOMContentLoaded", function() {
+        const siteButton = document.querySelector(".site-button");
+        const siteNav = document.querySelector(".site-nav");
 
+        siteButton.addEventListener("click", function() {
+            if (window.innerWidth < 800 && window.innerHeight < 656) {
+                siteNav.classList.toggle("active"); // Toggle the 'active' class
+            }
+        });
+    });
+    
     function announcement_createContent(item) {
 
         let announcementDiv = document.getElementById("announcement_container");
