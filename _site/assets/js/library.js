@@ -49,6 +49,31 @@ var library = (function () {
         }
     }
 
+    document.addEventListener("DOMContentLoaded", function() {
+        const menuButton = document.getElementById("menu-button");
+        const siteNav = document.getElementById("siteNav");
+    
+        menuButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            if (window.innerWidth < 800 && window.innerHeight < 656) {
+                if (siteNav.style.display === "none") {
+                    siteNav.style.display = "block"; // Show the navigation
+                } else {
+                    siteNav.style.display = "none"; // Hide the navigation
+                }
+            }
+        });
+    
+        window.addEventListener("resize", function() {
+            if (window.innerWidth >= 800 || window.innerHeight >= 656) {
+                siteNav.style.display = "block"; // Show the navigation if the window size is larger than 800x656
+            } else {
+                siteNav.style.display = "none"; // Hide the navigation if the window size is less than 800x656
+            }
+        });
+    });
+    
+
     function announcement_createContent(item) {
 
         let announcementDiv = document.getElementById("announcement_container");

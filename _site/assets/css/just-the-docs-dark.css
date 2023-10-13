@@ -157,6 +157,14 @@ hr { height: 1px; padding: 0; margin: 2rem 0; background-color: #44434d; border:
 .site-nav, .site-header, .site-footer { width: 100%; }
 @media (min-width: 66.5rem) { .site-nav, .site-header, .site-footer { width: 264px; } }
 
+.mobile-view {
+  display: none; /* Initially hide the navigation */
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
 .site-nav { display: none; }
 .site-nav.nav-open { display: block; }
 @media (min-width: 50rem) { .site-nav { display: block; padding-top: 3rem; padding-bottom: 1rem; overflow-y: auto; flex: 1 1 auto; } }
